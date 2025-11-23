@@ -1,20 +1,20 @@
-# ML- entrega.
+# ML - Delivery
 
-## Descrição
+## Description
 
-Este projeto é uma API desenvolvida com FastAPI que realiza operações de autenticação, manipulação de dados e scraping de dados de produção, processamento, comercialização, importação e exportação de produtos.
+This project is an API built with FastAPI that performs authentication operations, data handling, and web scraping of production, processing, commercialization, import, and export data for products.
 
-## Estrutura do Projeto
+## Project Structure
 
-- **auth.py**: Contém funções para criação e decodificação de tokens JWT.
-- **database.py**: Configuração do banco de dados SQLite.
-- **datacess.py**: Funções para web scraping de dados de produção, processamento, comercialização, importação e exportação.
-- **entities.py**: Modelos de dados Pydantic e SQLAlchemy.
-- **models.py**: Modelos de dados Pydantic para usuários e tokens.
-- **utils.py**: Funções utilitárias para hash e verificação de senhas.
-- **main.py**: Configuração principal do FastAPI e endpoints da API.
+- **auth.py**: Contains functions for creating and decoding JWT tokens.
+- **database.py**: SQLite database configuration.
+- **datacess.py**: Functions for web scraping production, processing, commercialization, import, and export data.
+- **entities.py**: Pydantic and SQLAlchemy data models.
+- **models.py**: Pydantic data models for users and tokens.
+- **utils.py**: Utility functions for password hashing and verification.
+- **main.py**: Main FastAPI configuration and API endpoints.
 
-## Requisitos
+## Requirements
 
 - Python 3.9+
 - FastAPI
@@ -24,137 +24,128 @@ Este projeto é uma API desenvolvida com FastAPI que realiza operações de aute
 - Passlib
 - python-jose
 
-## Instalação
+## Installation
 
-1. Clone o repositório:
-
-    ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    ```
-
-2. Navegue até o diretório do projeto:
+1. Clone the repository:
 
     ```bash
-    cd seu-repositorio
+    git clone https://github.com/your-username/your-repository.git
     ```
 
-3. Crie e ative um ambiente virtual:
+2. Navigate to the project directory:
+
+    ```bash
+    cd your-repository
+    ```
+
+3. Create and activate a virtual environment:
 
     ```bash
     python -m venv venv
-    source venv/bin/activate  # Para Windows: venv\Scripts\activate
+    source venv/bin/activate  # For Windows: venv\Scripts\activate
     ```
 
-4. Instale as dependências:
+4. Install the dependencies:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-## Configuração
+## Configuration
 
-1. Configure a chave secreta para JWT em `auth.py`:
+1. Set the secret key for JWT in `auth.py`:
 
     ```python
-    SECRET_KEY = "sua-chave-secreta"
+    SECRET_KEY = "your-secret-key"
     ALGORITHM = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES = 30
     ```
 
-2. Configure o URL do banco de dados em `database.py`:
+2. Set the database URL in `database.py`:
 
     ```python
     SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
     ```
 
-## Execução
+## Running
 
-1. Inicie a aplicação FastAPI:
+1. Start the FastAPI application:
 
     ```bash
     uvicorn main:app --reload
     ```
 
-2. Acesse a documentação interativa da API em [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+2. Access the interactive API documentation at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ## Endpoints
 
-### Autenticação
+### Authentication
 
-- **POST /token**: Gera um token de acesso para autenticação.
-  - Request: `username` e `password`
-  - Response: `access_token` e `token_type`
+- **POST /token**: Generates an access token for authentication.
+  - Request: `username` and `password`
+  - Response: `access_token` and `token_type`
 
-### Usuários
+### Users
 
-- **POST /users/**: Cria um novo usuário.
+- **POST /users/**: Creates a new user.
   - Request: `username`, `email`, `password`
-  - Response: Detalhes do usuário criado
+  - Response: Details of the created user
 
-- **GET /users/me**: Retorna detalhes do usuário autenticado.
-  - Response: Detalhes do usuário
+- **GET /users/me**: Returns details of the authenticated user.
+  - Response: User details
 
-### Dados de Produção
+### Production Data
 
-- **GET /producao/{year}**: Retorna dados de produção para o ano especificado.
+- **GET /producao/{year}**: Returns production data for the specified year.
   - Request: `year`
-  - Response: Lista de produções
+  - Response: List of production records
 
-### Dados de Processamento
+### Processing Data
 
-- **GET /processamento/{year}/{subopt}**: Retorna dados de processamento para o ano e subopção especificados.
+- **GET /processamento/{year}/{subopt}**: Returns processing data for the specified year and sub-option.
   - Request: `year`, `subopt`
-  - Response: Lista de processamentos
+  - Response: List of processing records
 
-### Dados de Comercialização
+### Commercialization Data
 
-- **GET /comercializacao/{year}**: Retorna dados de comercialização para o ano especificado.
+- **GET /comercializacao/{year}**: Returns commercialization data for the specified year.
   - Request: `year`
-  - Response: Lista de comercializações
+  - Response: List of commercialization records
 
-### Dados de Importação
+### Import Data
 
-- **GET /importacao/{year}/{subopt}**: Retorna dados de importação para o ano e subopção especificados.
+- **GET /importacao/{year}/{subopt}**: Returns import data for the specified year and sub-option.
   - Request: `year`, `subopt`
-  - Response: Lista de importações
+  - Response: List of import records
 
-### Dados de Exportação
+### Export Data
 
-- **GET /exportacao/{year}/{subopt}**: Retorna dados de exportação para o ano e subopção especificados.
+- **GET /exportacao/{year}/{subopt}**: Returns export data for the specified year and sub-option.
   - Request: `year`, `subopt`
-  - Response: Lista de exportações
+  - Response: List of export records
 
+### Authentication Usage
 
-### Autenticação
-
-1. Obtenha um token de acesso:
+1. Obtain an access token:
 
     ```bash
-    curl -X POST "http://127.0.0.1:8000/token" -d "username=seu-usuario&password=sua-senha"
+    curl -X POST "http://127.0.0.1:8000/token" -d "username=your-username&password=your-password"
     ```
 
-2. Utilize o token para acessar os endpoints protegidos:
+2. Use the token to access protected endpoints:
 
     ```bash
-    curl -H "Authorization: Bearer seu-token" "http://127.0.0.1:8000/users/me"
+    curl -H "Authorization: Bearer your-token" "http://127.0.0.1:8000/users/me"
     ```
 
-### Acessando Dados de Produção
+### Accessing Production Data
 
-1. Acesse os dados de produção para um determinado ano:
+1. Access production data for a given year:
 
     ```bash
     curl "http://127.0.0.1:8000/producao/2023"
     ```
 
-## Contribuição
+## License
 
-1. Fork este repositório
-2. Crie uma nova branch (`git checkout -b feature/nova-funcionalidade`)
-3. Faça commit das suas alterações (`git commit -am 'Adiciona nova funcionalidade'`)
-4. Faça push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
-
-## Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
